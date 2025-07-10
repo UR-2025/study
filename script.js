@@ -1,741 +1,760 @@
-// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    // Selectors for main elements
+    const contentDisplay = document.getElementById('content-display');
+    const navLinks = document.querySelectorAll('.navigation a');
+    const mainHeader = document.querySelector('.main-header h1');
 
-// Objeto que contiene toda la información de estudio extraída del PDF
-const studyData = {
-    "introduccion": {
-        title: "Introducción a la Fitoterapia",
-        icon: "🌿", // Icono para el tema
-        summary: `La Fitoterapia es el uso de plantas con fines terapéuticos y forma parte de la Medicina Tradicional y Complementaria. El estudio abarca el concepto, antecedentes históricos, exponentes principales, las plantas medicinales, metabolitos secundarios, su efecto terapéutico, prescripción, modo de acción, preparación, dosis, indicaciones, contraindicaciones y efectos colaterales.`,
-        questions: [
-            {
-                question: "¿Qué es la Fitoterapia?",
-                answer: "Es el uso de plantas con fines terapéuticos.",
-                type: "multiple-choice",
-                options: [
-                    "Es el estudio de los animales.",
-                    "Es el uso de plantas con fines terapéuticos.",
-                    "Es la ciencia de los minerales.",
-                    "Es la práctica de la cirugía."
-                ]
-            },
-            {
-                question: "¿A qué tipo de medicina pertenece la Fitoterapia según el documento?",
-                answer: "Medicina Tradicional y Complementaria.",
-                type: "multiple-choice",
-                options: [
-                    "Medicina Moderna.",
-                    "Medicina Quirúrgica.",
-                    "Medicina Tradicional y Complementaria.",
-                    "Medicina Avanzada."
-                ]
-            },
-            {
-                question: "¿Qué aspectos del estudio de la fitoterapia abarca el documento?",
-                answer: "Concepto, antecedentes, exponentes, plantas medicinales, metabolitos secundarios, efecto terapéutico, prescripción, modo de acción, preparación, dosis, indicaciones, contraindicaciones y efectos colaterales.",
-                type: "multiple-choice",
-                options: [
-                    "Solo el concepto y la historia.",
-                    "Únicamente la preparación de las plantas.",
-                    "Concepto, antecedentes, exponentes, plantas medicinales, metabolitos secundarios, efecto terapéutico, prescripción, modo de acción, preparación, dosis, indicaciones, contraindicaciones y efectos colaterales.",
-                    "Solo los efectos colaterales."
-                ]
-            }
-        ],
-        examples: [],
-        explanation: `La Fitoterapia se basa en el conocimiento ancestral y científico de las propiedades de las plantas para prevenir, aliviar o curar enfermedades. Es un campo amplio que requiere entender no solo las plantas en sí, sino también cómo sus componentes actúan en el cuerpo.`
-    },
-    "metabolismo-plantas": {
-        title: "Metabolismo de las Plantas",
-        icon: "🌱",
-        summary: `Las plantas realizan Metabolismo Primario (Fotosíntesis) para su supervivencia, crecimiento y reproducción, produciendo alimentos. También realizan Metabolismo Secundario, que produce principios activos útiles en fitoterapia.`,
-        questions: [
-            {
-                question: "¿Cuál es el propósito principal del Metabolismo Primario en las plantas?",
-                answer: "Producir alimentos para la supervivencia, crecimiento y reproducción de la planta.",
-                type: "multiple-choice",
-                options: [
-                    "Producir toxinas.",
-                    "Producir alimentos para la supervivencia, crecimiento y reproducción de la planta.",
-                    "Producir oxígeno para la atmósfera.",
-                    "Producir flores de colores."
-                ]
-            },
-            {
-                question: "¿Qué tipo de metabolitos son útiles en fitoterapia?",
-                answer: "Metabolitos secundarios.",
-                type: "multiple-choice",
-                options: [
-                    "Metabolitos primarios.",
-                    "Metabolitos terciarios.",
-                    "Metabolitos secundarios.",
-                    "Metabolitos inorgánicos."
-                ]
-            },
-            {
-                question: "¿Qué proceso fundamental se menciona como parte del Metabolismo Primario?",
-                answer: "Fotosíntesis.",
-                type: "multiple-choice",
-                options: [
-                    "Respiración.",
-                    "Fermentación.",
-                    "Fotosíntesis.",
-                    "Transpiración."
-                ]
-            }
-        ],
-        examples: [],
-        explanation: `El Metabolismo Primario es esencial para la vida de la planta, como la fotosíntesis que genera azúcares. El Metabolismo Secundario produce una vasta gama de compuestos (principios activos) que no son directamente necesarios para la supervivencia básica de la planta, pero que cumplen funciones ecológicas (defensa, atracción de polinizadores) y, lo más importante para la fitoterapia, tienen propiedades medicinales.`
-    },
-    "principios-activos": {
-        title: "Los Principios Activos",
-        icon: "🧪",
-        summary: `Los principios activos son los compuestos a los que se les atribuye acción terapéutica. Pueden estar presentes uno solo (ej. ácido salicílico en Sauce) o varios actuando en sinergia. Se producen en diferentes situaciones de la planta (día/noche, cambios de estaciones, tipo de suelo, altitud) y generalmente ofrecen mezclas complejas de acción similar.`,
-        questions: [
-            {
-                question: "¿Qué son los principios activos en el contexto de la fitoterapia?",
-                answer: "Son los compuestos a los que se les atribuye acción terapéutica.",
-                type: "multiple-choice",
-                options: [
-                    "Son los componentes inertes de la planta.",
-                    "Son los compuestos a los que se les atribuye acción terapéutica.",
-                    "Son los pigmentos de la planta.",
-                    "Son las estructuras de soporte de la planta."
-                ]
-            },
-            {
-                question: "¿Cómo pueden actuar los principios activos en las plantas?",
-                answer: "Pueden actuar individualmente o varios en sinergia.",
-                type: "multiple-choice",
-                options: [
-                    "Solo actúan individualmente.",
-                    "Solo actúan en sinergia.",
-                    "No tienen acción.",
-                    "Pueden actuar individualmente o varios en sinergia."
-                ]
-            },
-            {
-                question: "¿Qué factores influyen en la producción de principios activos en las plantas?",
-                answer: "Día/noche, cambios de estaciones, tipo de suelo, altitud, entre otros.",
-                type: "multiple-choice",
-                options: [
-                    "Solo la cantidad de agua.",
-                    "Únicamente la luz solar.",
-                    "Día/noche, cambios de estaciones, tipo de suelo, altitud, entre otros.",
-                    "Solo la presencia de insectos."
-                ]
-            }
-        ],
-        examples: [
-            "Ácido salicílico en Sauce (actúa solo)",
-            "Mezclas complejas de acción similar (ej. en la producción de principios activos)."
-        ],
-        explanation: `La sinergia es un concepto clave en fitoterapia: significa que la combinación de varios compuestos de una planta puede tener un efecto terapéutico mayor o más equilibrado que el de un solo compuesto aislado. La producción de estos compuestos varía según factores ambientales, lo que influye en la concentración y potencia de las plantas medicinales.`
-    },
-    "glucosidos": {
-        title: "Glúcidos (Azúcares)",
-        icon: "🍬",
-        summary: `Los glúcidos son un grupo de gran importancia en fitoterapia, tanto en cantidad como en acción medicinal. Incluyen sustancias de reserva como harinas, almidones y azúcares. Se dividen en Holósidos (solo azúcares) y Heterósidos (azúcares más otros componentes).`,
-        questions: [
-            {
-                question: "¿Cuál es la diferencia entre Holósidos y Heterósidos?",
-                answer: "Holósidos son solo azúcares, mientras que Heterósidos son azúcares más otros componentes.",
-                type: "multiple-choice",
-                options: [
-                    "Holósidos son grasas, Heterósidos son proteínas.",
-                    "Holósidos son solo azúcares, mientras que Heterósidos son azúcares más otros componentes.",
-                    "Holósidos son tóxicos, Heterósidos no.",
-                    "No hay diferencia."
-                ]
-            },
-            {
-                question: "¿Qué tipo de sustancias de reserva incluyen los glúcidos?",
-                answer: "Harinas, almidones y azúcares.",
-                type: "multiple-choice",
-                options: [
-                    "Lípidos y proteínas.",
-                    "Vitaminas y minerales.",
-                    "Harinas, almidones y azúcares.",
-                    "Solo agua."
-                ]
-            },
-            {
-                question: "¿Qué glúcido es útil en la diabetes por retardar la acción de los azúcares?",
-                answer: "Salvado de avena.",
-                type: "multiple-choice",
-                options: [
-                    "Pectina de las frutas.",
-                    "Mucílago de Agar.",
-                    "Salvado de avena.",
-                    "Semilla de lino."
-                ]
-            },
-            {
-                question: "¿Qué glúcido tiene acción antidiarreica y regula el estreñimiento?",
-                answer: "Semilla de lino.",
-                type: "multiple-choice",
-                options: [
-                    "Salvado de cereales.",
-                    "Pectina de las frutas.",
-                    "Mucílago de Agar.",
-                    "Semilla de lino."
-                ]
-            }
-        ],
-        examples: [
-            "Holósidos de interés fitoterápico: Gomas, Mucílagos, Celulosa.",
-            "Usos de glúcidos: Laxantes (Salvado de cereales, plantago), Calman irritación digestiva (mucílago de Agar), Provocan saciedad (pectina de frutas), Retardan acción de azúcares (salvado de avena, útil en diabetes), Acción antidiarreica y regulan estreñimiento (semilla de lino)."
-        ],
-        explanation: `Los glúcidos son fundamentales en la dieta y también ofrecen propiedades medicinales diversas. Los mucílagos, por ejemplo, son polisacáridos que forman geles en contacto con el agua, lo que les confiere propiedades demulcentes (calman y protegen las mucosas) y laxantes formadoras de volumen.`
-    },
-    "heterosidos": {
-        title: "Heterósidos: Tipos y Acciones",
-        icon: "💊",
-        summary: `Los heterósidos son compuestos muy extendidos en el reino vegetal y constituyen la mayoría de los principios activos de las plantas. Incluyen varios grupos con acciones terapéuticas específicas.`,
-        questions: [
-            {
-                question: "¿Qué tipo de heterósidos protegen los vasos sanguíneos y son antioxidantes?",
-                answer: "Flavonoides.",
-                type: "multiple-choice",
-                options: [
-                    "Saponósidos.",
-                    "Iridoides.",
-                    "Flavonoides.",
-                    "Antraquinonas."
-                ]
-            },
-            {
-                question: "¿Qué heterósidos tienen acción laxante y purgante, y regulan la bilis?",
-                answer: "Antraquinonas.",
-                type: "multiple-choice",
-                options: [
-                    "Cumarinas.",
-                    "Antraquinonas.",
-                    "Salicilatos.",
-                    "Hidroquinona."
-                ]
-            },
-            {
-                question: "¿Qué heterósidos son conocidos por su acción cardíaca, aumentando la energía contráctil del corazón?",
-                answer: "Cardenólidos y Bufadienólidos.",
-                type: "multiple-choice",
-                options: [
-                    "Taninos.",
-                    "Alcaloides.",
-                    "Cardenólidos y Bufadienólidos.",
-                    "Principios amargos."
-                ]
-            },
-            {
-                question: "¿Qué heterósidos se caracterizan por formar espuma y estimular la circulación venosa?",
-                answer: "Saponósidos.",
-                type: "multiple-choice",
-                options: [
-                    "Flavonoides.",
-                    "Iridoides.",
-                    "Saponósidos.",
-                    "Cianuratos."
-                ]
-            },
-            {
-                question: "¿Qué heterósidos son útiles como antibióticos frente a bacterias y hongos, y son antiinflamatorios?",
-                answer: "Iridoides.",
-                type: "multiple-choice",
-                options: [
-                    "Azufre.",
-                    "Salicilatos.",
-                    "Iridoides.",
-                    "Hidroquinona."
-                ]
-            },
-            {
-                question: "¿Qué heterósidos se encuentran en la gayuba y tienen acción antibiótica sobre el sistema urinario?",
-                answer: "Hidroquinona.",
-                type: "multiple-choice",
-                options: [
-                    "Antraquinonas.",
-                    "Cumarinas.",
-                    "Hidroquinona.",
-                    "Flavonoides."
-                ]
-            },
-            {
-                question: "¿Qué heterósidos, extraídos del haba tonka, son potentes anticoagulantes?",
-                answer: "Cumarinas.",
-                type: "multiple-choice",
-                options: [
-                    "Cardenólidos.",
-                    "Cianuratos.",
-                    "Cumarinas.",
-                    "Salicilatos."
-                ]
-            }
-        ],
-        examples: [
-            "**Flavonoides:** Protectores de vasos sanguíneos, antioxidantes, antiespasmódicos, antialérgicos, diuréticos. Isoflavonas de soya (estimulan estrógenos femeninos, útiles en menopausia).",
-            "**Antocianidinas:** (Incluidas en flavonoides) Pigmento azul, violeta o rojo. Protegen la pared de los vasos sanguíneos (várices), regeneran la púrpura de la retina (protectores visuales en diabetes).",
-            "**Saponósidos:** Disminuyen la tensión superficial (forman espuma). Irritantes a la mucosa. Estimulan la circulación venosa y edemas, expectorantes y calmantes de la tos. Ejemplos: Zarzaparrilla, digital, regaliz.",
-            "**Iridoides:** Sabor amargo. Antibióticos (bacterias, hongos, parásitos, tenias), antiinflamatorios, cicatrizantes, sedantes en artritis. Ejemplos: Llantén, ajenjo, valeriana, diente de león, ortiga, hojas de olivo, cardo bendito.",
-            "**Cianuratos:** Liberan cianuro al descomponerse. Estimulan la respiración (en dosis elevadas son venenos celulares). Ejemplos: Almendras amargas, semillas de albaricoque.",
-            "**Azufre:** Eliminan mal olor (col, mostaza, ajo, cebolla). Antibacterianas, antifúngicas, antiagregantes plaquetarias, reductoras del colesterol. Ejemplos: Cebolla, ajo.",
-            "**Salicilatos:** (Del sauce) Antiinflamatorios, antifebriles, antirreumáticos, diuréticos, sudoríficos. Externamente irritantes descamativos. Ejemplos: Ulmaria, abedul.",
-            "**Antraquinonas:** Acción laxante y purgante, reguladora biliar (actúan sobre el colon). Frescos son irritantes, secos suaves. Ejemplos: Frángula, sen, aloe, ruibarbo.",
-            "**Hidroquinona:** Acción antibiótica sobre el sistema urinario y genital. Ricos en arbutósidos. Ejemplos: Gayuba, madroño, hoja de frambueso, hoja de arándanos.",
-            "**Cardenólidos y Bufadienólidos:** Acción cardíaca (aumentan energía contráctil, reducen ritmo, mejoran conducción del impulso). Ejemplos: Adelfa, digital.",
-            "**Cumarinas:** Potente anticoagulante, tónico venoso, vasodilatador coronario. Ejemplos: Haba tonka, castaño de indias, meliloto, angélica."
-        ],
-        explanation: `Los heterósidos son una clase muy diversa de compuestos vegetales. Su estructura consiste en una parte azucarada (glicona) y una parte no azucarada (aglicona o genina). La aglicona es a menudo la responsable de la actividad biológica, mientras que la glicona influye en la solubilidad y transporte del compuesto en la planta y en el organismo.`
-    },
-    "grasas-proteinas": {
-        title: "Grasas y Proteínas",
-        icon: "🥑",
-        summary: `Las grasas en las plantas pueden ser revestimiento, estructura íntima (como la lecitina de soya) o grasa de reserva (aceites y mantecas como cacao, karité). Las proteínas incluyen enzimas (ej. proteasas útiles en trastornos digestivos) y lectinas (de interés antitumoral por ser inmunoestimulantes, aunque algunas son tóxicas como la ricina del ricino).`,
-        questions: [
-            {
-                question: "¿Qué tipo de grasas son la lecitina de soya y el cacao?",
-                answer: "Lecitina de soya es una grasa de estructura íntima, y el cacao es una grasa de reserva (manteca).",
-                type: "multiple-choice",
-                options: [
-                    "Grasas de revestimiento.",
-                    "Grasas de reserva.",
-                    "Lecitina de soya es una grasa de estructura íntima, y el cacao es una grasa de reserva (manteca).",
-                    "Grasas estructurales."
-                ]
-            },
-            {
-                question: "¿Qué enzimas proteicas son útiles en trastornos digestivos?",
-                answer: "Proteasas, como la papaína (papaya verde) y la bromelina (piña).",
-                type: "multiple-choice",
-                options: [
-                    "Amilasas.",
-                    "Lipasas.",
-                    "Proteasas, como la papaína (papaya verde) y la bromelina (piña).",
-                    "Celulasas."
-                ]
-            },
-            {
-                question: "¿Qué lectina se menciona con elevada toxicidad?",
-                answer: "La ricina del ricino.",
-                type: "multiple-choice",
-                options: [
-                    "La lectina del muérdago.",
-                    "La ricina del ricino.",
-                    "La papaína.",
-                    "La bromelina."
-                ]
-            }
-        ],
-        examples: [
-            "Grasas: Lecitina de soya (estructura íntima), Cacao, Karité (grasas de reserva).",
-            "Enzimas: Papaína (papaya verde), Bromelina (piña).",
-            "Lectinas: Muérdago (inmunoestimulante antitumoral), Ricina del ricino (elevada toxicidad)."
-        ],
-        explanation: `Aunque no siempre se asocian directamente con la "acción terapéutica" de la misma manera que los principios activos secundarios, las grasas y proteínas de las plantas juegan roles importantes. Las enzimas pueden ayudar en la digestión, y ciertas lectinas están siendo investigadas por sus propiedades inmunomoduladoras y antitumorales, aunque su uso debe ser muy cauteloso debido a la toxicidad potencial de algunas.`
-    },
-    "alcaloides": {
-        title: "Alcaloides",
-        icon: "⚗️",
-        summary: `Los alcaloides son compuestos nitrogenados con potentes actividades farmacológicas. Históricamente, se aislaron muchos alcaloides importantes como la morfina (1803), quinina y emetina (1820), cafeína (1818), codeína (1832), atropina, colchicina e hiociamina (1833). Hoy se conocen más de 3000.`,
-        questions: [
-            {
-                question: "¿Qué tipo de compuestos son los alcaloides?",
-                answer: "Compuestos nitrogenados.",
-                type: "multiple-choice",
-                options: [
-                    "Compuestos de carbono.",
-                    "Compuestos de oxígeno.",
-                    "Compuestos nitrogenados.",
-                    "Compuestos de azufre."
-                ]
-            },
-            {
-                question: "¿Qué alcaloide fue aislado de la amapola (opio) por Friedrich S. en 1803?",
-                answer: "Morfina.",
-                type: "multiple-choice",
-                options: [
-                    "Cafeína.",
-                    "Quinina.",
-                    "Morfina.",
-                    "Atropina."
-                ]
-            },
-            {
-                question: "¿Qué alcaloides tienen acción depresora en el SNC?",
-                answer: "Morfina y Codeína.",
-                type: "multiple-choice",
-                options: [
-                    "Cafeína y Cocaína.",
-                    "Atropina y Tubocurarina.",
-                    "Morfina y Codeína.",
-                    "Papaverina y Quinina."
-                ]
-            },
-            {
-                question: "¿Qué alcaloide se menciona como hipertensor?",
-                answer: "Efedrina.",
-                type: "multiple-choice",
-                options: [
-                    "Ajmalina.",
-                    "Quinidina.",
-                    "Efedrina.",
-                    "Yohimbina."
-                ]
-            },
-            {
-                question: "¿Qué alcaloide se usa como antiprotozoario para el paludismo?",
-                answer: "Quinina.",
-                type: "multiple-choice",
-                options: [
-                    "Arecolina.",
-                    "Vincaleucoblastina.",
-                    "Boldina.",
-                    "Quinina."
-                ]
-            }
-        ],
-        examples: [
-            "**Actividad en el SNC:**",
-            "Deprimen: Morfina, Codeína.",
-            "Excitan: Cafeína (café, té, cacao), Cocaína.",
-            "Paralizan: Atropina, Tubocurarina.",
-            "Anestésicos locales: Cocaína.",
-            "Antiespasmódicos: Papaverina.",
-            "**Acción en el sistema circulatorio y el corazón:**",
-            "Antiarritmicos: Ajmalina, Quinidina.",
-            "Depresores: Quinina.",
-            "Hipertensores: Efedrina.",
-            "Hipotensores: Yohimbina, alcaloides de la rawolfia.",
-            "**Otros:**",
-            "Antiprotozoarios: Quinina (paludismo).",
-            "Antihelmínticos: Arecolina.",
-            "Antitumorales: Vincaleucoblastina.",
-            "Digestivos: Boldina."
-        ],
-        explanation: `Los alcaloides son una clase muy diversa de metabolitos secundarios. Se caracterizan por contener al menos un átomo de nitrógeno en un anillo heterocíclico y suelen tener una potente actividad fisiológica, incluso a dosis bajas. Muchos medicamentos importantes derivan de alcaloides vegetales, lo que subraya su relevancia en la farmacología.`
-    },
-    "principios-amargos": {
-        title: "Principios Amargos",
-        icon: "🍋",
-        summary: `Los principios amargos son grupos variados de sustancias con sabor amargo que estimulan la secreción de bilis y jugos del estómago, abriendo el apetito.`,
-        questions: [
-            {
-                question: "¿Qué efecto principal tienen los principios amargos en el sistema digestivo?",
-                answer: "Estimulan la secreción de bilis y jugos del estómago, abriendo el apetito.",
-                type: "multiple-choice",
-                options: [
-                    "Inhiben la digestión.",
-                    "Estimulan la secreción de bilis y jugos del estómago, abriendo el apetito.",
-                    "Reducen el apetito.",
-                    "No tienen efecto digestivo."
-                ]
-            },
-            {
-                question: "¿Qué ejemplos de principios amargos se mencionan en el documento?",
-                answer: "Ésteres de la cinarina de la alcachofa, alcaloides de la quinina, o amargos del ajenjo.",
-                type: "multiple-choice",
-                options: [
-                    "Ácido tartárico y succínico.",
-                    "Taninos y saponósidos.",
-                    "Ésteres de la cinarina de la alcachofa, alcaloides de la quinina, o amargos del ajenjo.",
-                    "Flavonoides y cumarinas."
-                ]
-            }
-        ],
-        examples: [
-            "Ésteres de la cinarina de la alcachofa.",
-            "Alcaloides de la quinina.",
-            "Amargos del ajenjo (presentes en vinos quinados, vermut con ajenjo)."
-        ],
-        explanation: `El sabor amargo es a menudo una señal de la presencia de compuestos con propiedades digestivas. Al estimular las secreciones digestivas, los principios amargos preparan el sistema para la digestión, lo que puede ser útil en casos de inapetencia o digestión lenta.`
-    },
-    "acidos-organicos": {
-        title: "Ácidos Orgánicos",
-        icon: "🍎",
-        summary: `Los ácidos orgánicos como el tartárico, succínico o fumárico están presentes en uva, tomate, acedera, ruibarbo o espinaca. Tienen acción laxante, refrescante, estimulan la respiración celular y poseen un elevado poder antioxidante, siendo útiles en la prevención del cáncer y procesos degenerativos. Se encuentran en frutas y algunas verduras.`,
-        questions: [
-            {
-                question: "¿Qué acción principal tienen los ácidos orgánicos en el cuerpo?",
-                answer: "Acción laxante, refrescante, estimulan la respiración celular y son antioxidantes.",
-                type: "multiple-choice",
-                options: [
-                    "Acción sedante.",
-                    "Acción laxante, refrescante, estimulan la respiración celular y son antioxidantes.",
-                    "Acción estimulante cardíaca.",
-                    "Acción antiinflamatoria."
-                ]
-            },
-            {
-                question: "¿En qué tipo de alimentos se encuentran principalmente los ácidos orgánicos?",
-                answer: "En frutas y algunas verduras.",
-                type: "multiple-choice",
-                options: [
-                    "En carnes y lácteos.",
-                    "En cereales y granos.",
-                    "En frutas y algunas verduras.",
-                    "En pescados y mariscos."
-                ]
-            },
-            {
-                question: "¿Qué poder tienen los ácidos orgánicos que los hace útiles en la prevención del cáncer?",
-                answer: "Elevado poder antioxidante.",
-                type: "multiple-choice",
-                options: [
-                    "Poder antibiótico.",
-                    "Poder antiinflamatorio.",
-                    "Elevado poder antioxidante.",
-                    "Poder laxante."
-                ]
-            }
-        ],
-        examples: [
-            "Ácido tartárico (uva)",
-            "Ácido succínico (tomate)",
-            "Ácido fumárico (acedera, ruibarbo, espinaca)"
-        ],
-        explanation: `Los ácidos orgánicos son compuestos naturales que contribuyen al sabor ácido de muchos alimentos. Además de su papel en el metabolismo energético celular, su capacidad antioxidante es muy valiosa, ya que ayudan a neutralizar los radicales libres que pueden dañar las células y contribuir al envejecimiento y enfermedades crónicas.`
-    },
-    "taninos": {
-        title: "Taninos",
-        icon: "🍂",
-        summary: `Los taninos tienen un sabor característico, áspero, y precipitan muchos metales y medicamentos, dificultando la absorción. Poseen acción astringente, por lo que se utilizan en diarreas, úlceras húmedas y quemaduras. Son antisépticos y antiinflamatorios del intestino, calmantes de la tos, y útiles en conjuntivitis y como antioxidantes.`,
-        questions: [
-            {
-                question: "¿Cuál es la acción principal de los taninos que los hace útiles en diarreas y úlceras?",
-                answer: "Acción astringente.",
-                type: "multiple-choice",
-                options: [
-                    "Acción laxante.",
-                    "Acción estimulante.",
-                    "Acción astringente.",
-                    "Acción analgésica."
-                ]
-            },
-            {
-                question: "¿Qué efecto tienen los taninos sobre la absorción de metales y medicamentos?",
-                answer: "Dificultan la absorción al precipitarlos.",
-                type: "multiple-choice",
-                options: [
-                    "Facilitan la absorción.",
-                    "No tienen efecto.",
-                    "Aumentan la absorción.",
-                    "Dificultan la absorción al precipitarlos."
-                ]
-            },
-            {
-                question: "¿Además de su acción astringente, qué otras propiedades tienen los taninos?",
-                answer: "Antisépticos, antiinflamatorios del intestino, calmantes de la tos, útiles en conjuntivitis y como antioxidantes.",
-                type: "multiple-choice",
-                options: [
-                    "Solo son laxantes.",
-                    "Solo son estimulantes.",
-                    "Antisépticos, antiinflamatorios del intestino, calmantes de la tos, útiles en conjuntivitis y como antioxidantes.",
-                    "Solo son analgésicos."
-                ]
-            },
-            {
-                question: "¿Qué plantas se mencionan como fuentes de taninos?",
-                answer: "Hamamelis, castaño de indias, roble, encina, eucalipto, ciprés, té, fresno o quina.",
-                type: "multiple-choice",
-                options: [
-                    "Uva, tomate, espinaca.",
-                    "Sauce, aloe, ruibarbo.",
-                    "Hamamelis, castaño de indias, roble, encina, eucalipto, ciprés, té, fresno o quina.",
-                    "Papaína, bromelina."
-                ]
-            }
-        ],
-        examples: [
-            "Hamamelis",
-            "Castaño de Indias",
-            "Roble",
-            "Encina",
-            "Eucalipto",
-            "Ciprés",
-            "Té",
-            "Fresno",
-            "Quina"
-        ],
-        explanation: `La acción astringente de los taninos se debe a su capacidad para precipitar proteínas. En las mucosas, esto forma una capa protectora que reduce la secreción y la inflamación, lo que explica su uso en diarreas y para cicatrizar heridas. Sin embargo, esta misma propiedad puede interferir con la absorción de nutrientes y medicamentos, por lo que su consumo debe ser considerado.`
-    }
-};
-
-const topicNavigation = document.getElementById('topic-navigation');
-const studyArea = document.getElementById('study-area');
-let currentTopicId = null;
-
-/**
- * Inicializa la navegación de temas en la barra lateral.
- */
-function initializeNavigation() {
-    for (const id in studyData) {
-        const topic = studyData[id];
-        const button = document.createElement('button');
-        button.className = 'topic-button block w-full text-left py-2 px-4 rounded-lg hover:bg-blue-100 transition duration-200 ease-in-out';
-        button.dataset.topicId = id;
-        button.innerHTML = `<span>${topic.icon || '🍃'}</span> ${topic.title}`; // Añadir icono
-        button.addEventListener('click', () => loadTopic(id));
-        topicNavigation.appendChild(button);
-    }
-}
-
-/**
- * Carga y muestra el contenido de un tema específico.
- * @param {string} topicId - El ID del tema a cargar.
- */
-function loadTopic(topicId) {
-    currentTopicId = topicId;
-    const topic = studyData[topicId];
-    if (!topic) {
-        studyArea.innerHTML = `<div class="card"><h3 class="text-2xl font-semibold text-gray-700 mb-4">Tema no encontrado.</h3><p class="text-gray-600">Por favor, selecciona un tema válido.</p></div>`;
-        return;
-    }
-
-    // Actualizar el estado activo del botón de navegación
-    document.querySelectorAll('.topic-button').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.topicId === topicId) {
-            btn.classList.add('active');
+    // Data structure for topics, including summary, examples, detailed explanations, and quiz questions.
+    // Each topic has a unique ID, title, icon, and content sections.
+    const topics = {
+        'welcome': {
+            title: 'Bienvenido al Estudio de Fitoterapia 🌿',
+            icon: 'fas fa-home',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-info-circle"></i> Resumen General del Documento</h3>
+                    <p>Este documento explora la Fitoterapia, el uso de plantas con fines medicinales. Se enfoca en la clasificación de las plantas (depurativas, curativas, sintomáticas, preventivas) y su aplicación específica en diversas condiciones de salud, incluyendo el embarazo, alergias, dolores de cabeza, problemas menstruales y el cáncer. La fitoterapia es una práctica ancestral que ha sido validada por la OMS y se basa en la rica biodiversidad de plantas medicinales, especialmente en Perú.</p>
+                    <p>Aprenderás sobre los principios activos, modos de uso y precauciones de plantas como el Agave, Cola de Caballo, Diente de León, Grama, Jengibre, Quinua, Kiwicha, Avena, Garbanzo, Semillas de Chía, Arándanos y Almendras, entre otras.</p>
+                    <p>La aplicación está diseñada para ser interactiva, permitiéndote explorar cada tema en detalle y poner a prueba tus conocimientos con preguntas de opción múltiple.</p>
+                </div>
+            `
+        },
+        'fundamentos': {
+            title: 'Fundamentos del Uso de Plantas Medicinales 🌿',
+            icon: 'fas fa-leaf',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Alrededor del 80% de la población mundial confía en medicinas tradicionales. Las plantas medicinales tienen un rol crucial en la salud peruana debido a su vasta flora. Hipócrates afirmaba "La naturaleza es el médico de los enfermos". Las plantas son una valiosa fuente de materia prima para la industria farmacéutica y sus principios activos equilibrados limitan los efectos indeseables.</p>
+                    <button class="toggle-button" data-target="fundamentos-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="fundamentos-explicacion" class="detailed-explanation">
+                        <p>La Organización Mundial de la Salud (OMS) reconoce la importancia de las medicinas tradicionales, destacando que una gran parte de la población mundial las utiliza como su principal recurso de salud. En Perú, la diversidad ecológica y microclimática ha dado lugar a una flora excepcionalmente rica, con aproximadamente 80,000 especies, muchas de ellas con propiedades medicinales.</p>
+                        <p>Esta práctica se alinea con las estrategias de Atención Primaria de Salud establecidas en Alma Ata en 1978, que promovieron el "Rescate de la Medicina Popular Tradicional y su integración al Sistema de Salud Oficial Peruano".</p>
+                        <p>Además de su uso directo, las plantas medicinales son una fuente indispensable de materia prima para la industria farmacéutica. La ventaja de los productos derivados de plantas frente a los químicos sintéticos radica en que sus principios activos se encuentran en un equilibrio natural, lo que a menudo resulta en efectos indeseables limitados.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Fundamentos</h3>
+                    <div id="quiz-fundamentos" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'depurativas': {
+            title: 'Plantas Depurativas 🌿',
+            icon: 'fas fa-spa',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Las plantas depurativas ayudan a órganos como el hígado, riñones e intestino a eliminar toxinas. Ejemplos incluyen el Ágave, Cola de Caballo, Diente de León y Grama.</p>
+                    <button class="toggle-button" data-target="depurativas-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="depurativas-explicacion" class="detailed-explanation">
+                        <h4>Agave (Agave americana)</h4>
+                        <p>Originario de América Central. Sus hojas carnosas terminan en punta con bordes espinosos. La raíz y las hojas son depurativas de la sangre y diuréticas. Contiene inulina, que se hidroliza en fructosa y un componente no metabolizable que ayuda a la depuración de sustancias tóxicas. Se usa para evaluar la función renal. Modo de uso: infusión (30g/litro de agua), hasta 3 tazas diarias por no más de 10 días. Precauciones: no usar en embarazadas, menores de 12 años, o hipertensos. La inulina estimula el sistema inmune, ayuda a la absorción de iones y vitamina B, e incrementa la absorción de calcio, previniendo osteoporosis y algunos cánceres como el de mama y colon.</p>
+                        <h4>Cola de Caballo (Equisetum arvense)</h4>
+                        <p>Ubicación: América. Es una herbácea sin hojas ni flores. Principios activos: flavonoides, taninos, colesterol, carotenos, alcaloides, sales minerales (silicio, potasio, magnesio, manganeso). Propiedades: depurativo, remineralizante, diurético, antianémico, antidismenorreico, útil en cistitis y regulador del bazo. Modo de uso: decocción al 2%, hervir 5 min e infundir 30 min. Precauciones: contraindicado en el embarazo por posible acción anticolinérgica y oxitócica de los alcaloides.</p>
+                        <h4>Diente de León (Taraxacum officinale)</h4>
+                        <p>Ubicación: América y Europa. Raíz carnosa, flores amarillas, tallo erecto de hasta 50 cm. Principios activos: hojas (flavonoides, cumarinas, vit. B y C), raíces (inulina, principios amargos como taraxacina, sales potásicas, carotenoides, mucílagos). Propiedades: diurético, depurativo, laxante, refrescante de funciones hepáticas, depurador de la sangre, reduce ácido úrico y colesterol, favorece la secreción de bilis. Modo de uso: decocción de raíces y hojas, 3 tazas al día. Precaución: no exceder 3 tazas al día.</p>
+                        <h4>Grama (Cynodon dactylon)</h4>
+                        <p>Ubicación: América y Europa. Hierba de 10 a 30 cm, rizoma con raíces subterráneas y ramas aéreas con vello fino. Principios activos: fructosana, manitol, sales potásicas. Propiedades: depurativo, diurético, hepatoprotector, especial para depurar riñones, astringente. Útil en cistitis, cálculos renales, uretritis, vaginitis, hipertensión, diabetes tipo II e hiperuricemia. Precauciones: ninguna a dosis adecuada. Modo de uso: decocción al 5%, 2 a 3 tazas diarias.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Plantas Depurativas</h3>
+                    <div id="quiz-depurativas" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'curativas': {
+            title: 'Plantas Curativas o de Sostén 🌿',
+            icon: 'fas fa-first-aid',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Las plantas curativas se utilizan para remediar enfermedades o tratar problemas de salud, optimizando la salud integral al actuar en diferentes sistemas del organismo.</p>
+                    <button class="toggle-button" data-target="curativas-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="curativas-explicacion" class="detailed-explanation">
+                        <h4>Arándano (hojas)</h4>
+                        <p>Reduce el contenido de glucosa en la sangre, siendo útil para diabéticos.</p>
+                        <h4>Cúrcuma (raíz)</h4>
+                        <p>Antiinflamatorio, útil para artritis, problemas hepáticos, elimina sustancias cancerosas, soriasis y hongos.</p>
+                        <h4>Menta piperita (hojas)</h4>
+                        <p>Digestiva, combate la hinchazón del vientre, problemas estomacales, mal de altura, dolores, tensiones musculares y piedras del riñón.</p>
+                        <h4>Milenrama (flor)</h4>
+                        <p>Mejora la memoria, ayuda en la menopausia, combate la hipertensión e inflamación de venas, varices, granos y uñas.</p>
+                        <h4>Olivo (hojas)</h4>
+                        <p>Especialmente indicado para la hipertensión y taquicardias; aumenta el colesterol bueno y es antiviral; funciona como antibiótico.</p>
+                        <h4>Saúco (flor)</h4>
+                        <p>Alivia la tos, problemas gripales, fiebre, previene resfriados y, en forma de vapor en los oídos, es un remedio para la otitis.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Plantas Curativas</h3>
+                    <div id="quiz-curativas" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'sintomaticas': {
+            title: 'Plantas Sintomáticas 🌿',
+            icon: 'fas fa-thermometer-half',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Las plantas sintomáticas actúan como descongestionantes locales y disminuyen el estado de ansiedad, complementando el efecto terapéutico de las plantas curativas. Incluyen el Molle, Ajo, Eucalipto, Flor de Retama, Valeriana, Pimpinela y Manzanilla.</p>
+                    <button class="toggle-button" data-target="sintomaticas-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="sintomaticas-explicacion" class="detailed-explanation">
+                        <p>Estas plantas son auxiliares en el tratamiento, ya que no curan la enfermedad en sí, pero alivian sus manifestaciones y mejoran el bienestar del paciente. Por ejemplo, al reducir la ansiedad o la congestión, permiten que el cuerpo responda mejor a los tratamientos curativos.</p>
+                        <ul>
+                            <li><strong>Schinus molle (molle) + Allium sativum (ajo):</strong> Combinación utilizada por sus efectos descongestionantes.</li>
+                            <li><strong>Eucaliptus globulus (eucalipto):</strong> Conocido por sus propiedades expectorantes y descongestionantes respiratorias.</li>
+                            <li><strong>Spartium junceum (flor de retama):</strong> Puede tener efectos sedantes y ayudar a reducir la ansiedad.</li>
+                            <li><strong>Valeriana officinalis (valeriana):</strong> Ampliamente reconocida por sus propiedades sedantes y ansiolíticas, útil para calmar el sistema nervioso.</li>
+                            <li><strong>Pimpinella officinalis (pimpinela):</strong> Utilizada tradicionalmente para problemas respiratorios y digestivos que pueden causar malestar sintomático.</li>
+                            <li><strong>Matricaria chamomilla (manzanilla):</strong> Con propiedades antiinflamatorias y calmantes, ideal para aliviar síntomas de irritación y ansiedad.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Plantas Sintomáticas</h3>
+                    <div id="quiz-sintomaticas" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'preventivas': {
+            title: 'Plantas Preventivas 🌿',
+            icon: 'fas fa-shield-alt',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Las plantas preventivas fortalecen las defensas del organismo, estimulando el sistema inmunológico, incrementando la fagocitosis de macrófagos y favoreciendo la eliminación de complejos inmunizantes. También aportan vitaminas y minerales, mejorando el estado nutricional. Ejemplos: Uña de Gato, Comfrey y Guayacán.</p>
+                    <button class="toggle-button" data-target="preventivas-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="preventivas-explicacion" class="detailed-explanation">
+                        <p>Estas plantas son fundamentales para mantener la salud a largo plazo y prevenir la aparición de enfermedades. Su acción se centra en reforzar las capacidades naturales del cuerpo para defenderse.</p>
+                        <ul>
+                            <li><strong>Uncaria tomentosa (uña de gato):</strong> Reconocida por sus potentes propiedades inmunomoduladoras y antiinflamatorias, ayudando a fortalecer las defensas del cuerpo.</li>
+                            <li><strong>Symphytum officinales (comfrey):</strong> Aunque debe usarse con precaución por su toxicidad hepática en uso interno prolongado, tradicionalmente se ha usado externamente para la cicatrización. En el contexto de prevención, su uso interno es limitado y bajo estricta supervisión.</li>
+                            <li><strong>Tabebuya porliera (guayacán):</strong> Conocido por sus propiedades antimicrobianas y antiinflamatorias, que pueden contribuir a la prevención de infecciones y al mantenimiento de la salud general.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Plantas Preventivas</h3>
+                    <div id="quiz-preventivas" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'obstetricia-primer': {
+            title: 'Fitoterapia en el Primer Trimestre del Embarazo 🌿',
+            icon: 'fas fa-baby',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Durante el primer trimestre, se pueden usar plantas como el Jengibre para aliviar náuseas matutinas y la Quinua y Kiwicha por su alto valor nutricional y beneficios para el desarrollo fetal.</p>
+                    <button class="toggle-button" data-target="obstetricia-primer-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="obstetricia-primer-explicacion" class="detailed-explanation">
+                        <h4>Jengibre (Zingiber officinale)</h4>
+                        <p>Planta rastrera perenne, nativa del sudeste asiático, India y China. Principios activos: Zingibereno, zingiberal, cineol, felandreno, crital, borneol, gingerol, shogaol y zingerona. Beneficios: Alivio de náuseas matutinas, fortalecimiento del sistema inmunológico, prevención de resfriados y tos, mayor suministro de sangre para el bebé, niveles de colesterol más saludables, mejor absorción de nutrientes, control de ardor estomacal, relajación muscular. Contraindicaciones: Si se toman medicamentos para la presión arterial, diabetes o coagulación, antecedentes de aborto espontáneo o sangrado vaginal, o problemas crónicos de salud. Dosis: 1-4g diarios, pero en embarazadas no exceder 1500mg (1.5g).</p>
+                        <h4>Quinua</h4>
+                        <p>Pseudocereal de la familia de las amarantáceas. Fuente de calcio, hierro, ácidos grasos omega 6 y 9, y fibra. Beneficios: Aporta proteínas y energía, reduce retención de líquidos, disminuye riesgo de infecciones, rica en fibra (ayuda al tránsito intestinal y estreñimiento), no contiene gluten, controla el colesterol. Contraindicaciones: Puede causar dolencias en personas con problemas intestinales por su alto contenido de proteínas. Contiene saponinas amargas que pueden ser tóxicas, por lo que se recomienda lavarla antes de cocinarla. Puede desencadenar alergias.</p>
+                        <h4>Kiwicha (Amaranto)</h4>
+                        <p>Planta frondosa de hasta 3 metros. Rica en proteínas (con lisina), vitaminas A, B1, B2, B3, C, ácido fólico y minerales (calcio, hierro, fósforo). Beneficios: Aumenta reservas de calcio en la madre, favorece formación ósea en el feto, previene defectos en el bebé, previene anemia en la embarazada, evita el estreñimiento. Se puede consumir en copos o harina, añadiéndola a sopas, ensaladas, yogur o en dulces.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Fitoterapia en el Primer Trimestre</h3>
+                    <div id="quiz-obstetricia-primer" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'obstetricia-segundo': {
+            title: 'Fitoterapia en el Segundo Trimestre del Embarazo 🌿',
+            icon: 'fas fa-baby-carriage',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>En el segundo trimestre, la Avena y el Garbanzo son importantes. La Avena, rica en ácido fólico, regula el tránsito intestinal y estimula hormonas. El Garbanzo, con alto valor nutritivo, previene anemia y favorece el desarrollo fetal.</p>
+                    <button class="toggle-button" data-target="obstetricia-segundo-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="obstetricia-segundo-explicacion" class="detailed-explanation">
+                        <h4>Avena (Avena sativa)</h4>
+                        <p>Planta herbácea de la familia Poaceae. La nutrición es clave para el desarrollo del bebé y la madre. Es una fuente rica de ácido fólico, esencial antes, durante y después del embarazo. Principios activos: Grasas vegetales insaturadas, ácido linoleico, vitaminas B1, B2, D, E, niacina, carotenos, y sales minerales (calcio, hierro, zinc, fósforo). El fósforo estimula la actividad cerebral. Beneficios: Regula el tránsito intestinal, mejora la respuesta a la insulina y previene la diabetes, estimula la producción de progesterona y estrógenos, rica en hierro y folatos (favorece crecimiento de tejidos y óseo). Dosis: 200 µg diarios, aumentando a 400 µg durante el embarazo. Contraindicaciones: El consumo excesivo puede interferir con la digestión, causar diarrea u obstrucción intestinal.</p>
+                        <h4>Garbanzo (Cicer arietinum)</h4>
+                        <p>Alto valor nutritivo: 360 hidratos de carbono, 20g proteínas, 6.5g grasas, 130mg calcio, 8mg hierro por 100g. Aportan ácido fólico, esencial para el desarrollo del bebé. Principios activos: Rico en proteínas, almidón, lípidos (ácido oleico y linoleico, insaturados y sin colesterol), fibra, vitamina B y minerales (fósforo, potasio, magnesio, folatos, isoflavonas). Beneficios: Previenen anemia, favorecen desarrollo fetal, combaten estreñimiento, mejoran estado de ánimo, favorecen desarrollo óseo fetal. Contraindicaciones: Por su fibra, pueden causar hinchazón y gases; consumir con moderación.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Fitoterapia en el Segundo Trimestre</h3>
+                    <div id="quiz-obstetricia-segundo" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'obstetricia-tercer': {
+            title: 'Fitoterapia en el Tercer Trimestre del Embarazo 🌿',
+            icon: 'fas fa-child',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>En el tercer trimestre, las Semillas de Chía, Arándanos y Almendras son beneficiosas. La Chía aporta Omega 3 y fibra. Los Arándanos son antioxidantes y diuréticos. Las Almendras son ricas en calcio y proteínas, esenciales para el feto.</p>
+                    <button class="toggle-button" data-target="obstetricia-tercer-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="obstetricia-tercer-explicacion" class="detailed-explanation">
+                        <h4>Semillas de Chía (Salvia hispánica)</h4>
+                        <p>Beneficios: Aportan Omega 3 (controla colesterol), ricas en hierro, calcio y fibra. Principios activos: Ácidos grasos poliinsaturados (Omega 3), Vitamina A, C y grupo B, sales minerales (fósforo, calcio, magnesio, potasio, zinc, cobre). Dosis: Dos cucharadas al día. Contraindicaciones: Alergia, hipertensos, diarreas.</p>
+                        <h4>Arándanos (Vaccinium corymbosum)</h4>
+                        <p>Son antioxidantes, anticancerígenos, diuréticos, antiinflamatorios. Contienen ácidos fenólicos, flavonoides, antocianinas y proantocianidinas, vitaminas, microelementos, pectinas. Aumentan la hemoglobina y disminuyen los niveles de azúcar en la sangre. Beneficios: Causa saciedad (evita sobrepeso), el hierro mantiene la hemoglobina, el calcio forma el esqueleto fetal y preserva dientes, cabello y uñas de la madre. Útil para embarazadas con diabetes mellitus. Contraindicaciones: Pancreatitis, colecistitis, colelitiasis, discinesia.</p>
+                        <h4>Almendra (Prunus dulcis)</h4>
+                        <p>Originaria de Asia Central, introducida en Europa. Beneficios: Gran aporte de calcio (esencial para embarazadas), fuente importante de proteínas (necesarias para desarrollo muscular y fetal), ayuda al desarrollo del sistema nervioso del bebé. Aunque calórica, no causa aumento de peso descontrolado si se consume en la dosis indicada. Contraindicaciones: No presenta alergia. Consumir no más de 25 gramos diarios, o dos vasos de leche de almendra al día.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Fitoterapia en el Tercer Trimestre</h3>
+                    <div id="quiz-obstetricia-tercer" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'alergias': {
+            title: 'Plantas Medicinales para Alergias 🌿',
+            icon: 'fas fa-allergies',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Las alergias se manifiestan con síntomas en la piel (irritación, comezón, inflamación), vías respiratorias (asma, rinitis, estornudos) y sistema digestivo (dolor abdominal, vómitos). Plantas como el Aloe Vera y la Manzanilla pueden aliviar estos síntomas.</p>
+                    <button class="toggle-button" data-target="alergias-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="alergias-explicacion" class="detailed-explanation">
+                        <h4>Aloe Vera (penca sábila)</h4>
+                        <p>Se pueden preparar cremas y aceites que alivian los problemas en la piel causados por alergias, como irritación y comezón. Sus propiedades antiinflamatorias y cicatrizantes son beneficiosas.</p>
+                        <h4>Manzanilla (Matricaria chamomilla L. o Matricaria recutita L.)</h4>
+                        <p>Ideal en infusiones. Alivia problemas de rinitis y dolores estomacales asociados a las alergias. Tiene propiedades antiinflamatorias y calmantes. Contraindicado para mujeres embarazadas por riesgo de aborto.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Alergias</h3>
+                    <div id="quiz-alergias" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'dolores-cabeza': {
+            title: 'Plantas Medicinales para Dolores de Cabeza 🌿',
+            icon: 'fas fa-headache',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Los dolores de cabeza, incluyendo migrañas, son comunes y pueden tratarse con remedios vegetales. La Canela, Verbena y Acelga son ejemplos de plantas que pueden aliviar estos dolores.</p>
+                    <button class="toggle-button" data-target="dolores-cabeza-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="dolores-cabeza-explicacion" class="detailed-explanation">
+                        <p>Los dolores de cabeza son una de las dolencias más frecuentes, y sus causas pueden ser variadas. Afortunadamente, muchas de ellas pueden ser abordadas con el uso adecuado de ciertas plantas medicinales. Las migrañas o jaquecas, que son dolores de cabeza intensos y debilitantes, también pueden encontrar alivio a través de la fitoterapia.</p>
+                        <ul>
+                            <li><strong>Canela (Cinnamomum zeylanicum o Cinnamomum verum J.Presl):</strong> Una taza de infusión de canela puede aliviar rápidamente los dolores de cabeza. Sin embargo, tiene un efecto oxitócico, por lo que está contraindicada en embarazadas.</li>
+                            <li><strong>Verbena (Verbena officinalis):</strong> Las propiedades sedantes de la verbena actúan como un ligero analgésico, siendo ideal para tratar las jaquecas.</li>
+                            <li><strong>Acelga (Beta vulgaris var. cicla):</strong> Esta planta, común en la dieta, posee propiedades analgésicas que ayudan a aliviar el dolor de cabeza.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Dolores de Cabeza</h3>
+                    <div id="quiz-dolores-cabeza" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'menstruales': {
+            title: 'Plantas Medicinales para Problemas Menstruales 🌿',
+            icon: 'fas fa-venus',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>Los problemas menstruales incluyen dolores intensos, sangrado abundante o ausencia de menstruación. El Anís es una planta que puede ayudar a aliviar los cólicos menstruales y regular los ciclos.</p>
+                    <button class="toggle-button" data-target="menstruales-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="menstruales-explicacion" class="detailed-explanation">
+                        <p>Los problemas relacionados con el ciclo menstrual son una preocupación común para muchas mujeres, manifestándose en diversas formas como dolores intensos (dismenorrea), sangrado excesivo (menorragia) o la ausencia de menstruación (amenorrea). Algunas plantas medicinales pueden ofrecer alivio y ayuda en la regulación.</p>
+                        <h4>Anís (Pimpinella anisum)</h4>
+                        <p>Originario de Asia sudoccidental y la cuenca mediterránea oriental, hoy difundido en América. Es una planta herbácea anual que forma matas de hasta 1m de altura, con flores en densas umbelas y frutos oblongos de fuerte sabor aromático. Principios activos: Muy rico en anetol. Propiedades: Es un excelente carminativo, digestivo, mejora el apetito, alivia cólicos (incluidos los infantiles en bebés lactantes), náuseas y flatulencias. Es un buen antiséptico y antiespasmolítico, lo que lo hace útil para los cólicos menstruales y para ayudar a regular los ciclos. También se sugiere durante la lactancia para aumentar la producción de leche. Usos: Se utiliza la semilla. Es muy valioso contra la tos fuerte y seca, con expectoración difícil, así como problemas respiratorios asociados a la gripe. Precaución: El anís estrellado es neurotóxico, por lo que no debe administrarse a bebés y está contraindicado para madres lactantes.</p>
+                        <h4>Orégano (Origanum vulgare)</h4>
+                        <p>Nativa del oeste o suroeste de Eurasia y la región mediterránea. Se usa como condimento y en infusiones herbales. Es una hierba perenne que forma un pequeño arbusto achaparrado de unos 45 cm de alto. Contiene dos tipos de fenoles, principalmente carvacrol y timol, con actividad antioxidante, antiinflamatoria, antimicrobiana y, en estudios primarios, antitumoral, antiséptica. También se le considera tónica y digestiva, lo que puede ayudar indirectamente a aliviar el malestar general asociado a problemas menstruales.</p>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Problemas Menstruales</h3>
+                    <div id="quiz-menstruales" class="quiz-container"></div>
+                </div>
+            `
+        },
+        'cancer': {
+            title: 'Plantas Medicinales Contra el Cáncer 🌿',
+            icon: 'fas fa-ribbon',
+            content: `
+                <div class="content-section">
+                    <h3><i class="fas fa-book-open"></i> Resumen</h3>
+                    <p>El cáncer es una enfermedad compleja. En los últimos años, se han descubierto plantas con potencial para ayudar en su tratamiento, principalmente por su acción antioxidante, que reduce el daño celular. La Cúrcuma, Camelia (Té Verde) y Moringa son ejemplos de estas plantas.</p>
+                    <button class="toggle-button" data-target="cancer-explicacion">Explicación Detallada <i class="fas fa-chevron-down"></i></button>
+                    <div id="cancer-explicacion" class="detailed-explanation">
+                        <p>El cáncer es una enfermedad en la que los tejidos pierden la capacidad de regular su crecimiento, y cada tipo es único, sin un tratamiento universal. Sin embargo, la investigación ha identificado plantas con propiedades que podrían ser coadyuvantes en el tratamiento, destacando su capacidad antioxidante.</p>
+                        <ul>
+                            <li><strong>Cúrcuma (Curcuma longa):</strong> Planta de origen oriental, estudiada por sus efectos antiinflamatorios y antitumorales. Algunos resultados sugieren que podría ayudar a combatir el cáncer de mama, estómago y pulmón. También tiene efecto anticoagulante.</li>
+                            <li><strong>Camelia (Té verde):</strong> Esta planta es la fuente del té verde y es rica en antioxidantes. Las dietas ricas en antioxidantes son conocidas por ayudar a retardar el envejecimiento celular y pueden contribuir a la prevención del cáncer.</li>
+                            <li><strong>Moringa (Moringa oleifera):</strong> Conocida como el "árbol de la vida", ha recibido mucha atención. Estudios preliminares indican que podría ayudar a combatir el cáncer de estómago.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quiz-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas sobre Plantas Contra el Cáncer</h3>
+                    <div id="quiz-cancer" class="quiz-container"></div>
+                </div>
+            `
         }
+    };
+
+    // Quiz questions data structure
+    const quizzes = {
+        'fundamentos': [
+            {
+                question: "¿Qué porcentaje de habitantes de la tierra confían en medicinas tradicionales según la OMS?",
+                options: ["50%", "70%", "80%", "90%"],
+                answer: "80%",
+                hint: "Es la gran mayoría de la población mundial."
+            },
+            {
+                question: "¿Qué frase célebre se atribuye a Hipócrates?",
+                options: ["'Conócete a ti mismo'", "'La naturaleza es el médico de los enfermos'", "'Mens sana in corpore sano'", "'Todo fluye'"],
+                answer: "'La naturaleza es el médico de los enfermos'",
+                hint: "Relacionada con el poder curativo del entorno natural."
+            },
+            {
+                question: "¿Cuál es una ventaja de las plantas medicinales frente a los productos químicos?",
+                options: ["Son más baratas", "Sus principios activos se hallan equilibrados", "Tienen un sabor más agradable", "Crecen en cualquier lugar"],
+                answer: "Sus principios activos se hallan equilibrados",
+                hint: "Piensa en cómo la naturaleza crea un balance."
+            },
+            {
+                question: "¿Qué estrategia de Atención Primaria en Alma Ata avala el uso de plantas medicinales en Perú?",
+                options: ["'Modernización de la medicina'", "'Rescate de la Medicina Popular Tradicional'", "'Globalización de la salud'", "'Innovación farmacéutica'"],
+                answer: "'Rescate de la Medicina Popular Tradicional'",
+                hint: "Se refiere a la revalorización de prácticas ancestrales."
+            }
+        ],
+        'depurativas': [
+            {
+                question: "¿Qué tipo de plantas ayudan al hígado, riñones e intestino a eliminar toxinas?",
+                options: ["Curativas", "Sintomáticas", "Depurativas", "Preventivas"],
+                answer: "Depurativas",
+                hint: "Su nombre lo indica, ayudan a 'limpiar' el cuerpo."
+            },
+            {
+                question: "El Agave americana es conocido por ser depurativo de la sangre y...",
+                options: ["Estimulante", "Analgésico", "Diurético", "Sedante"],
+                answer: "Diurético",
+                hint: "Ayuda a la eliminación de líquidos."
+            },
+            {
+                question: "¿Qué componente del Agave estimula el sistema inmune y ayuda a la absorción de calcio?",
+                options: ["Fructosa", "Inulina", "Zingibereno", "Taraxacina"],
+                answer: "Inulina",
+                hint: "Es un tipo de fibra dietética."
+            },
+            {
+                question: "¿Cuál de estas plantas está contraindicada en el embarazo debido a sus alcaloides?",
+                options: ["Diente de León", "Grama", "Agave", "Cola de Caballo"],
+                answer: "Cola de Caballo",
+                hint: "Contiene compuestos que pueden tener efectos no deseados durante la gestación."
+            },
+            {
+                question: "¿Qué propiedad principal tiene el Diente de León además de ser diurético?",
+                options: ["Antianémico", "Hepatoprotector", "Laxante", "Antiséptico"],
+                answer: "Laxante",
+                hint: "Ayuda al tránsito intestinal."
+            },
+            {
+                question: "¿Para qué se utiliza la Grama además de ser depurativa y diurética?",
+                options: ["Problemas de piel", "Cálculos renales", "Dolores de cabeza", "Insomnio"],
+                answer: "Cálculos renales",
+                hint: "Es beneficiosa para el sistema urinario."
+            }
+        ],
+        'curativas': [
+            {
+                question: "¿Qué planta curativa reduce el contenido de glucosa en la sangre?",
+                options: ["Cúrcuma", "Menta piperita", "Arándano (hojas)", "Saúco"],
+                answer: "Arándano (hojas)",
+                hint: "Es una baya conocida por sus beneficios para la salud."
+            },
+            {
+                question: "¿Cuál de estas plantas es un potente antiinflamatorio y ayuda en problemas hepáticos?",
+                options: ["Milenrama", "Olivo", "Cúrcuma", "Menta piperita"],
+                answer: "Cúrcuma",
+                hint: "Es una especia de color amarillo intenso."
+            },
+            {
+                question: "La Menta piperita es conocida por sus propiedades...",
+                options: ["Diuréticas", "Digestivas", "Antivirales", "Analgésicas"],
+                answer: "Digestivas",
+                hint: "Ayuda con la hinchazón del vientre."
+            },
+            {
+                question: "¿Qué planta es especialmente indicada para la hipertensión y taquicardias, y aumenta el colesterol bueno?",
+                options: ["Saúco", "Milenrama", "Olivo (hojas)", "Arándano"],
+                answer: "Olivo (hojas)",
+                hint: "Se asocia con la dieta mediterránea."
+            },
+            {
+                question: "¿Qué planta alivia la tos, problemas gripales y fiebre?",
+                options: ["Cúrcuma", "Milenrama", "Saúco (flor)", "Menta piperita"],
+                answer: "Saúco (flor)",
+                hint: "Es común en remedios para resfriados."
+            }
+        ],
+        'sintomaticas': [
+            {
+                question: "¿Qué tipo de plantas disminuyen el estado de ansiedad y actúan como descongestionantes?",
+                options: ["Curativas", "Preventivas", "Sintomáticas", "Depurativas"],
+                answer: "Sintomáticas",
+                hint: "Ayudan a aliviar los síntomas."
+            },
+            {
+                question: "¿Cuál de estas plantas es conocida por sus propiedades sedantes y ansiolíticas?",
+                options: ["Eucalipto", "Valeriana", "Molle", "Pimpinela"],
+                answer: "Valeriana",
+                hint: "Se usa comúnmente para el insomnio y la ansiedad."
+            },
+            {
+                question: "El Eucalipto es utilizado principalmente por sus propiedades:",
+                options: ["Digestivas", "Expectorantes y descongestionantes", "Antivirales", "Analgésicas"],
+                answer: "Expectorantes y descongestionantes",
+                hint: "Piensa en su uso en vapores para problemas respiratorios."
+            }
+        ],
+        'preventivas': [
+            {
+                question: "¿Qué tipo de plantas incrementan las defensas del organismo y estimulan el sistema inmunológico?",
+                options: ["Sintomáticas", "Curativas", "Depurativas", "Preventivas"],
+                answer: "Preventivas",
+                hint: "Su objetivo es evitar enfermedades."
+            },
+            {
+                question: "La Uña de Gato (Uncaria tomentosa) es reconocida por sus propiedades:",
+                options: ["Digestivas", "Inmunomoduladoras y antiinflamatorias", "Analgésicas", "Sedantes"],
+                answer: "Inmunomoduladoras y antiinflamatorias",
+                hint: "Ayuda a fortalecer el sistema de defensa del cuerpo."
+            },
+            {
+                question: "¿Qué planta, conocida como el 'árbol de la vida', es valorada por sus propiedades antimicrobianas?",
+                options: ["Comfrey", "Guayacán", "Uña de Gato", "Moringa"],
+                answer: "Guayacán",
+                hint: "También se le conoce por su madera dura."
+            }
+        ],
+        'obstetricia-primer': [
+            {
+                question: "¿Qué planta es comúnmente utilizada en el primer trimestre para aliviar las náuseas matutinas?",
+                options: ["Quinua", "Kiwicha", "Jengibre", "Avena"],
+                answer: "Jengibre",
+                hint: "Es una raíz con un sabor picante."
+            },
+            {
+                question: "¿Cuál es la dosis máxima recomendada de jengibre para mujeres embarazadas?",
+                options: ["1 gramo", "1.5 gramos", "2 gramos", "4 gramos"],
+                answer: "1.5 gramos",
+                hint: "Es importante no exceder una cantidad específica."
+            },
+            {
+                question: "¿Qué pseudocereal es una gran fuente de fibra y ayuda al tránsito intestinal en el embarazo?",
+                options: ["Kiwicha", "Jengibre", "Quinua", "Arándano"],
+                answer: "Quinua",
+                hint: "Es un grano andino muy nutritivo."
+            },
+            {
+                question: "¿Qué precaución se debe tener al consumir quinua debido a sus saponinas?",
+                options: ["Consumirla con lácteos", "Lavarla antes de cocinarla", "No mezclarla con frutas", "Consumirla solo en ayunas"],
+                answer: "Lavarla antes de cocinarla",
+                hint: "Ayuda a eliminar el sabor amargo y posibles toxinas."
+            },
+            {
+                question: "¿Qué aminoácido esencial se encuentra en alta proporción en la Kiwicha, haciéndola una proteína de alta calidad?",
+                options: ["Leucina", "Lisina", "Metionina", "Triptófano"],
+                answer: "Lisina",
+                hint: "Es un aminoácido que suele ser limitante en otras proteínas vegetales."
+            },
+            {
+                question: "¿Qué beneficio principal aporta la Kiwicha a la mujer embarazada?",
+                options: ["Reduce el colesterol", "Ayuda a aumentar las reservas de calcio", "Previene la diabetes", "Alivia dolores de cabeza"],
+                answer: "Ayuda a aumentar las reservas de calcio",
+                hint: "Es crucial para el desarrollo óseo del feto."
+            }
+        ],
+        'obstetricia-segundo': [
+            {
+                question: "¿Qué cereal es una fuente rica de ácido fólico, esencial en el embarazo?",
+                options: ["Trigo", "Arroz", "Avena", "Maíz"],
+                answer: "Avena",
+                hint: "Es un desayuno común y saludable."
+            },
+            {
+                question: "¿Cuál es la necesidad diaria de ácido fólico en el embarazo, según el documento?",
+                options: ["200 µg", "300 µg", "400 µg", "500 µg"],
+                answer: "400 µg",
+                hint: "Es el doble de la necesidad diaria normal."
+            },
+            {
+                question: "¿Qué legumbre es rica en proteínas, almidón y lípidos, y ayuda a prevenir la anemia en el embarazo?",
+                options: ["Lentejas", "Frijoles", "Garbanzo", "Guisantes"],
+                answer: "Garbanzo",
+                hint: "Es un ingrediente principal en el hummus."
+            },
+            {
+                question: "¿Además de prevenir la anemia, qué otro beneficio importante aportan los garbanzos en el embarazo?",
+                options: ["Mejoran la visión", "Favorecen el desarrollo del feto", "Reducen las alergias", "Regulan el sueño"],
+                answer: "Favorecen el desarrollo del feto",
+                hint: "Sus nutrientes son vitales para el crecimiento del bebé."
+            }
+        ],
+        'obstetricia-tercer': [
+            {
+                question: "¿Qué semillas aportan Omega 3 y son ricas en hierro y calcio?",
+                options: ["Semillas de Lino", "Semillas de Girasol", "Semillas de Chía", "Semillas de Calabaza"],
+                answer: "Semillas de Chía",
+                hint: "Son pequeñas y se hinchan en líquidos."
+            },
+            {
+                question: "¿Cuál es la dosis diaria recomendada de semillas de chía?",
+                options: ["Una cucharada", "Dos cucharadas", "Tres cucharadas", "Cuatro cucharadas"],
+                answer: "Dos cucharadas",
+                hint: "Es una cantidad moderada."
+            },
+            {
+                question: "¿Qué fruta es antioxidante, diurética y ayuda a disminuir los niveles de azúcar en la sangre?",
+                options: ["Fresa", "Arándano", "Frambuesa", "Mora"],
+                answer: "Arándano",
+                hint: "Son pequeñas bayas de color azul oscuro."
+            },
+            {
+                question: "¿Qué beneficio principal aportan las almendras a las mujeres embarazadas?",
+                options: ["Reducen las náuseas", "Aportan una gran ingesta de calcio", "Disminuyen la presión arterial", "Mejoran la digestión"],
+                answer: "Aportan una gran ingesta de calcio",
+                hint: "Es crucial para los huesos y el desarrollo fetal."
+            },
+            {
+                question: "¿Cuál es la dosis diaria máxima recomendada de almendras para una mujer embarazada?",
+                options: ["10 gramos", "25 gramos", "50 gramos", "100 gramos"],
+                answer: "25 gramos",
+                hint: "Es una cantidad pequeña, equivalente a un puñado."
+            },
+            {
+                question: "¿Qué tipo de ácidos grasos son los principales principios activos de la chía?",
+                options: ["Saturados", "Monoinsaturados", "Poliinsaturados del tipo Omega 3", "Trans"],
+                answer: "Poliinsaturados del tipo Omega 3",
+                hint: "Son grasas 'buenas' esenciales para la salud."
+            }
+        ],
+        'alergias': [
+            {
+                question: "¿Qué planta se usa para preparar cremas y aceites que alivian problemas de piel por alergias?",
+                options: ["Manzanilla", "Aloe Vera", "Menta", "Eucalipto"],
+                answer: "Aloe Vera",
+                hint: "Es una planta con gel transparente en sus hojas."
+            },
+            {
+                question: "¿Qué planta, ideal en infusiones, alivia problemas de rinitis y dolores estomacales por alergias, pero está contraindicada en embarazadas?",
+                options: ["Anís", "Verbena", "Manzanilla", "Acelga"],
+                answer: "Manzanilla",
+                hint: "Es una flor pequeña y blanca, muy usada en tés."
+            }
+        ],
+        'dolores-cabeza': [
+            {
+                question: "¿Qué infusión puede aliviar rápidamente los dolores de cabeza, pero está contraindicada en embarazadas por su efecto oxitócico?",
+                options: ["Té de menta", "Infusión de canela", "Té de jengibre", "Infusión de manzanilla"],
+                answer: "Infusión de canela",
+                hint: "Es una especia aromática."
+            },
+            {
+                question: "¿Qué planta posee propiedades sedantes que sirven como un ligero analgésico para las jaquecas?",
+                options: ["Acelga", "Verbena", "Canela", "Menta"],
+                answer: "Verbena",
+                hint: "Es una flor silvestre."
+            },
+            {
+                question: "¿Qué planta común en la dieta tiene propiedades analgésicas para aliviar el dolor de cabeza?",
+                options: ["Espinaca", "Lechuga", "Acelga", "Coliflor"],
+                answer: "Acelga",
+                hint: "Es una verdura de hoja verde."
+            }
+        ],
+        'menstruales': [
+            {
+                question: "¿Qué planta es muy rica en anetol y ayuda a aliviar los cólicos menstruales y regular los ciclos?",
+                options: ["Orégano", "Anís", "Menta", "Manzanilla"],
+                answer: "Anís",
+                hint: "Es una semilla pequeña y aromática."
+            },
+            {
+                question: "¿Qué precaución se debe tener con el anís estrellado en bebés y madres lactantes?",
+                options: ["Puede causar alergias", "Es neurotóxico", "Causa somnolencia", "Interfiere con la digestión"],
+                answer: "Es neurotóxico",
+                hint: "Es una contraindicación muy específica para este grupo."
+            },
+            {
+                question: "¿Qué fenoles principales contiene el Orégano, que le confieren propiedades antioxidantes y antimicrobianas?",
+                options: ["Flavonoides y taninos", "Carvacrol y timol", "Inulina y fructosa", "Gingerol y shogaol"],
+                answer: "Carvacrol y timol",
+                hint: "Son compuestos aromáticos característicos de esta hierba."
+            }
+        ],
+        'cancer': [
+            {
+                question: "¿Qué planta de origen oriental se ha estudiado por sus efectos antiinflamatorios y antitumorales, especialmente en cáncer de mama, estómago y pulmón?",
+                options: ["Camelia", "Moringa", "Cúrcuma", "Jengibre"],
+                answer: "Cúrcuma",
+                hint: "Es una especia amarilla muy usada en la cocina india."
+            },
+            {
+                question: "¿Qué planta, de la cual se obtiene el té verde, es rica en antioxidantes y ayuda a retardar el envejecimiento?",
+                options: ["Moringa", "Cúrcuma", "Camelia", "Ginseng"],
+                answer: "Camelia",
+                hint: "Es la planta base de una bebida muy popular."
+            },
+            {
+                question: "¿Qué planta, también llamada 'árbol de la vida', podría ayudar a combatir el cáncer de estómago?",
+                options: ["Cúrcuma", "Camelia", "Moringa", "Aloe Vera"],
+                answer: "Moringa",
+                hint: "Ha ganado mucha popularidad recientemente por sus múltiples beneficios."
+            }
+        ]
+    };
+
+    // Function to load content based on topic
+    const loadContent = (topicId) => {
+        const topic = topics[topicId];
+        if (topic) {
+            mainHeader.textContent = topic.title; // Update main header
+            contentDisplay.innerHTML = topic.content; // Load content into display area
+
+            // Add fade-in animation
+            contentDisplay.style.opacity = 0;
+            setTimeout(() => {
+                contentDisplay.style.opacity = 1;
+            }, 50); // Small delay to trigger transition
+
+            // Activate toggle buttons
+            document.querySelectorAll('.toggle-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.classList.toggle('show');
+                        const icon = button.querySelector('i');
+                        if (targetElement.classList.contains('show')) {
+                            icon.classList.remove('fa-chevron-down');
+                            icon.classList.add('fa-chevron-up');
+                        } else {
+                            icon.classList.remove('fa-chevron-up');
+                            icon.classList.add('fa-chevron-down');
+                        }
+                    }
+                });
+            });
+
+            // Load quiz for the current topic if available
+            const quizContainer = document.getElementById(`quiz-${topicId}`);
+            if (quizContainer) {
+                loadQuiz(topicId, quizContainer);
+            }
+        }
+    };
+
+    // Function to load a specific quiz
+    const loadQuiz = (topicId, container) => {
+        const quizQuestions = quizzes[topicId];
+        if (!quizQuestions || quizQuestions.length === 0) {
+            container.innerHTML = '<p>No hay preguntas disponibles para este tema.</p>';
+            return;
+        }
+
+        let currentQuestionIndex = 0;
+
+        // Function to display the current question
+        const displayQuestion = () => {
+            container.innerHTML = ''; // Clear previous question
+            const qData = quizQuestions[currentQuestionIndex];
+
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('quiz-question');
+            questionDiv.innerHTML = `<p>${currentQuestionIndex + 1}. ${qData.question}</p>`;
+
+            const optionsContainer = document.createElement('div');
+            optionsContainer.classList.add('options-container');
+
+            qData.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(button, option, qData.answer, feedbackMessage, hintButton));
+                optionsContainer.appendChild(button);
+            });
+
+            questionDiv.appendChild(optionsContainer);
+
+            const feedbackMessage = document.createElement('div');
+            feedbackMessage.classList.add('feedback-message');
+            questionDiv.appendChild(feedbackMessage);
+
+            const hintButton = document.createElement('button');
+            hintButton.classList.add('hint-button');
+            hintButton.textContent = 'Pista';
+            hintButton.addEventListener('click', () => {
+                hintText.textContent = qData.hint;
+                hintText.style.display = 'block';
+                hintButton.disabled = true; // Disable hint after showing
+            });
+            questionDiv.appendChild(hintButton);
+
+            const hintText = document.createElement('div');
+            hintText.classList.add('hint-text');
+            questionDiv.appendChild(hintText);
+
+            container.appendChild(questionDiv);
+
+            // Disable all options until an answer is selected
+            optionsContainer.querySelectorAll('button').forEach(btn => btn.disabled = false);
+        };
+
+        // Function to check the selected answer
+        const checkAnswer = (selectedButton, selectedOption, correctAnswer, feedbackElement, hintBtn) => {
+            const options = selectedButton.parentNode.querySelectorAll('button');
+            options.forEach(btn => btn.disabled = true); // Disable all options after selection
+
+            if (selectedOption === correctAnswer) {
+                selectedButton.classList.add('correct');
+                feedbackElement.innerHTML = '¡Correcto! ✅';
+                // Allow moving to the next question after a short delay
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < quizQuestions.length) {
+                        displayQuestion();
+                    } else {
+                        container.innerHTML = '<p class="feedback-message">¡Felicidades! Has completado todas las preguntas de este tema. 🎉</p>';
+                    }
+                }, 1000);
+            } else {
+                selectedButton.classList.add('incorrect');
+                feedbackElement.innerHTML = 'Incorrecto. ❌ Intenta de nuevo.';
+                hintBtn.disabled = false; // Re-enable hint if incorrect
+                options.forEach(btn => btn.disabled = false); // Re-enable options to try again
+            }
+        };
+
+        displayQuestion(); // Display the first question
+    };
+
+    // Event listeners for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior
+            const topicId = link.dataset.topic;
+
+            // Remove active class from all links
+            navLinks.forEach(nav => nav.classList.remove('active'));
+            // Add active class to the clicked link
+            link.classList.add('active');
+
+            loadContent(topicId); // Load content for the selected topic
+        });
     });
 
-    // Construir el HTML del contenido del tema
-    let contentHtml = `<div class="card">
-                        <h3 class="text-2xl font-semibold text-gray-700 mb-4">${topic.title}</h3>
-                        <h4 class="text-xl font-medium text-gray-600 mb-3">📖 Resumen:</h4>
-                        <p class="text-gray-700 leading-relaxed">${topic.summary}</p>
-                    </div>`;
-
-    // Sección de Preguntas y Respuestas
-    if (topic.questions && topic.questions.length > 0) {
-        contentHtml += `<div class="card">
-                        <h4 class="text-xl font-medium text-gray-600 mb-3">❓ Preguntas y Respuestas:</h4>
-                        <div id="question-container"></div>
-                        <button id="next-question-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-4 transition duration-200 ease-in-out">Siguiente Pregunta</button>
-                    </div>`;
-    }
-
-    // Sección de Ejemplos Prácticos
-    if (topic.examples && topic.examples.length > 0) {
-        contentHtml += `<div class="card">
-                        <h4 class="text-xl font-medium text-gray-600 mb-3">🌱 Ejemplos Prácticos:</h4>
-                        <ul class="example-list text-gray-700">`;
-        topic.examples.forEach(example => {
-            contentHtml += `<li>${example}</li>`;
-        });
-        contentHtml += `</ul></div>`;
-    }
-
-    // Sección de Explicaciones Detalladas
-    if (topic.explanation) {
-        contentHtml += `<div class="card">
-                        <h4 class="text-xl font-medium text-gray-600 mb-3">💡 Explicación Detallada:</h4>
-                        <button id="show-explanation-btn" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">Mostrar Explicación</button>
-                        <div id="explanation-content" class="explanation-box hidden mt-4">
-                            <p class="text-gray-800 leading-relaxed">${topic.explanation}</p>
-                        </div>
-                    </div>`;
-    }
-
-    studyArea.innerHTML = contentHtml;
-
-    // Inicializar la lógica de preguntas si existen
-    if (topic.questions && topic.questions.length > 0) {
-        initializeQuestions(topic.questions);
-    }
-
-    // Añadir listener para mostrar explicación
-    const showExplanationBtn = document.getElementById('show-explanation-btn');
-    if (showExplanationBtn) {
-        showExplanationBtn.addEventListener('click', () => {
-            const explanationContent = document.getElementById('explanation-content');
-            explanationContent.classList.toggle('hidden');
-            showExplanationBtn.textContent = explanationContent.classList.contains('hidden') ? 'Mostrar Explicación' : 'Ocultar Explicación';
-        });
-    }
-}
-
-let currentQuestionIndex = 0;
-let currentQuestions = [];
-
-/**
- * Inicializa el sistema de preguntas para un tema dado.
- * @param {Array} questions - Array de objetos de preguntas.
- */
-function initializeQuestions(questions) {
-    currentQuestions = questions;
-    currentQuestionIndex = 0;
-    displayQuestion();
-
-    const nextQuestionBtn = document.getElementById('next-question-btn');
-    if (nextQuestionBtn) {
-        nextQuestionBtn.addEventListener('click', () => {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < currentQuestions.length) {
-                displayQuestion();
-            } else {
-                const questionContainer = document.getElementById('question-container');
-                questionContainer.innerHTML = `<p class="text-green-700 font-semibold">¡Has completado todas las preguntas de este tema! 🎉</p>`;
-                nextQuestionBtn.style.display = 'none';
-            }
-        });
-    }
-}
-
-/**
- * Muestra la pregunta actual en el contenedor.
- */
-function displayQuestion() {
-    const questionContainer = document.getElementById('question-container');
-    if (!questionContainer) return;
-
-    const questionData = currentQuestions[currentQuestionIndex];
-    if (!questionData) return;
-
-    let questionHtml = `<p class="text-lg text-gray-800 mb-3">${currentQuestionIndex + 1}. ${questionData.question}</p>`;
-
-    if (questionData.type === "multiple-choice") {
-        questionHtml += `<div class="options-container space-y-2 mb-4">`;
-        questionData.options.forEach((option, index) => {
-            const optionId = `option-${currentQuestionIndex}-${index}`;
-            questionHtml += `
-                <div class="flex items-center">
-                    <input type="radio" id="${optionId}" name="question-${currentQuestionIndex}" value="${option}" class="form-radio h-4 w-4 text-blue-600">
-                    <label for="${optionId}" class="ml-2 text-gray-700">${option}</label>
-                </div>
-            `;
-        });
-        questionHtml += `</div>
-                         <button id="check-answer-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mt-3 transition duration-200 ease-in-out">Comprobar Respuesta</button>
-                         <div id="feedback-message" class="question-feedback hidden"></div>`;
-    }
-
-    questionContainer.innerHTML = questionHtml;
-
-    const checkAnswerBtn = document.getElementById('check-answer-btn');
-    const feedbackMessage = document.getElementById('feedback-message');
-
-    if (checkAnswerBtn) {
-        checkAnswerBtn.addEventListener('click', () => {
-            const selectedOption = document.querySelector(`input[name="question-${currentQuestionIndex}"]:checked`);
-            const userAnswer = selectedOption ? selectedOption.value.trim() : '';
-            const correctAnswer = questionData.answer.trim();
-
-            feedbackMessage.classList.remove('hidden', 'correct', 'incorrect');
-            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-                feedbackMessage.classList.add('correct');
-                feedbackMessage.textContent = "¡Correcto! 🎉";
-                // Deshabilitar opciones una vez que la respuesta es correcta
-                document.querySelectorAll(`input[name="question-${currentQuestionIndex}"]`).forEach(input => input.disabled = true);
-            } else {
-                feedbackMessage.classList.add('incorrect');
-                feedbackMessage.textContent = `Incorrecto. La respuesta correcta era: "${correctAnswer}"`;
-            }
-        });
-    }
-}
-
-// Inicializar la aplicación al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    initializeNavigation();
-    // Cargar el primer tema por defecto o mostrar la bienvenida
-    // loadTopic("introduccion"); // Descomentar para cargar el primer tema automáticamente
+    // Load welcome content by default when the page loads
+    loadContent('welcome');
+    document.querySelector('.navigation a[data-topic="welcome"]').classList.add('active');
 });
