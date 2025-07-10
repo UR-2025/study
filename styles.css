@@ -1,0 +1,98 @@
+/* styles.css */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8; /* Un color de fondo suave */
+}
+.container {
+    display: flex;
+    min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la vista */
+}
+.sidebar {
+    width: 280px; /* Ancho fijo para la barra lateral */
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    overflow-y: auto; /* Permite desplazamiento si hay muchos temas */
+    flex-shrink: 0; /* Evita que la barra lateral se encoja */
+}
+.main-content {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    padding: 2rem;
+    background-color: #e2e8f0; /* Un color de fondo ligeramente diferente para el contenido principal */
+    overflow-y: auto; /* Permite desplazamiento para el contenido */
+}
+.topic-button {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #edf2f7;
+    color: #2d3748;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    display: flex; /* Para alinear icono y texto */
+    align-items: center; /* Para alinear icono y texto */
+}
+.topic-button:hover {
+    background-color: #d1d5db;
+    color: #1a202c;
+}
+.topic-button.active {
+    background-color: #4299e1; /* Color azul para el tema activo */
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(66, 153, 225, 0.3);
+}
+.topic-button span {
+    margin-right: 0.5rem; /* Espacio entre icono y texto */
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+}
+.question-feedback {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+.question-feedback.correct {
+    background-color: #d4edda;
+    color: #155724;
+}
+.question-feedback.incorrect {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.explanation-box {
+    background-color: #e0f2fe; /* Azul claro para explicaciones */
+    border-left: 4px solid #38b2ac; /* Borde verde azulado */
+    padding: 1rem 1.5rem;
+    margin-top: 1.5rem;
+    border-radius: 0.5rem;
+    color: #2c5282;
+}
+.example-list {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    padding-left: 0.5rem;
+}
+/* Estilos para hacer la página responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 300px; /* Limita la altura de la barra lateral en móviles */
+        border-bottom: 2px solid #e2e8f0;
+    }
+    .main-content {
+        padding: 1rem;
+    }
+}
